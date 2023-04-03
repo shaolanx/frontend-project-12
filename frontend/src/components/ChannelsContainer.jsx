@@ -12,6 +12,7 @@ const Channels = ({
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const classButtons = cn('w-100', 'rounded-0', 'text-start', 'text-truncate', 'btn', { 'btn-secondary': isCurrent });
+  const dropDownButtonClass = cn('flex-grow-0', 'dropdown-toggle', 'dropdown-toggle-split', 'btn', { 'btn-secondary': isCurrent });
   const nameChanel = filter.clean(name);
 
   const handleClick = (channelId) => () => {
@@ -35,7 +36,7 @@ const Channels = ({
         </button>
         {removable && (
           <>
-            <button type="button" aria-expanded="false" className="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
+            <button type="button" aria-expanded="false" className={dropDownButtonClass} data-bs-toggle="dropdown">
               <span className="visually-hidden">{t('channel.channelMenu')}</span>
             </button>
             <div className="dropdown-menu">
