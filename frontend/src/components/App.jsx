@@ -8,7 +8,7 @@ import { useAuth } from '../hooks/index.jsx';
 import LoginPage from './LoginPage.jsx';
 import ErrorPage from './ErrorPage.jsx';
 import SignupPage from './SignupPage.jsx';
-import MainPage from './MainPade.jsx';
+import MainPage from './MainPage.jsx';
 import Layout from './Layout.jsx';
 import routes from '../routes.js';
 

@@ -42,11 +42,8 @@ const ChatContainer = () => {
         await addMessage(filter.clean(body), currentUser, currentChannelId);
         formik.values.body = '';
       } catch {
-        if (Error.isAxiosError) {
-          toast.error(t('errors.network'));
-        } else {
-          toast.error(t('errors.unknown'));
-        }
+        const err = Error.isAxiosError ? 'network' : 'unknown';
+        toast.error(t(`errors.${err}`));
       }
     },
   });

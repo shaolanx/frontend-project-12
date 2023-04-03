@@ -38,11 +38,8 @@ const AddChannelModal = () => {
         dispatch(modalActions.closeModal());
         toast.success(t('channel.created'));
       } catch {
-        if (Error.isAxiosError) {
-          toast.error(t('errors.network'));
-        } else {
-          toast.error(t('errors.unknown'));
-        }
+        const err = Error.isAxiosError ? 'network' : 'unknown';
+        toast.error(t(`errors.${err}`));
       }
     },
   });
@@ -108,11 +105,8 @@ const RenameCannel = () => {
         dispatch(modalActions.closeModal());
         toast.success(t('channel.renamed'));
       } catch {
-        if (Error.isAxiosError) {
-          toast.error(t('errors.network'));
-        } else {
-          toast.error(t('errors.unknown'));
-        }
+        const err = Error.isAxiosError ? 'network' : 'unknown';
+        toast.error(t(`errors.${err}`));
       }
     },
   });
