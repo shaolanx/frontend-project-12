@@ -33,12 +33,12 @@ const LoginPage = () => {
         logIn(data);
         navigate(routes.chatPadePath(), { replace: true });
       } catch (err) {
-        if (err.response?.status === 401) { // eslint-disable-line
+        if (err.response?.status === 401) {
           setAuthFailed(true);
           return;
         }
 
-        if (err.isAxiosError) { // eslint-disable-line
+        if (err.isAxiosError) {
           toast.error(t('errors.network'));
         } else {
           toast.error(t('errors.unknown'));
