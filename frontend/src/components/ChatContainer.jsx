@@ -42,7 +42,7 @@ const ChatContainer = () => {
         await addMessage(filter.clean(body), currentUser, currentChannelId);
         formik.values.body = '';
       } catch {
-        if (err.isAxiosError) { // eslint-disable-line
+        if (Error.isAxiosError) {
           toast.error(t('errors.network'));
         } else {
           toast.error(t('errors.unknown'));

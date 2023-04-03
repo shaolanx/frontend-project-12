@@ -26,10 +26,10 @@ const MainPage = () => {
         dispatch(messagesActions.setInitialMessages(data));
       })
       .catch((err) => {
-        if (err.response?.status === 401) { // eslint-disable-line
+        if (err.response?.status === 401) {
           logOut();
           navigate(routes.loginPadePath(), { replace: true });
-        } else if (err.isAxiosError) { // eslint-disable-line
+        } else if (err.isAxiosError) {
           toast.error(t('errors.network'));
         } else {
           toast.error(t('errors.unknown'));
