@@ -45,16 +45,12 @@ const SignupPage = () => {
         logIn(data);
         navigate(routes.chatPadePath(), { replace: true });
       } catch (err) {
-        if (err.response?.status === 409) {
-          setUsedAlreadyExists(true);
-          return;
-        }
-
-        if (err.isAxiosError) {
-          toast.error(t('errors.network'));
-        } else {
-          toast.error(t('errors.unknown'));
-        }
+        const trowAxiosErr = () => {
+          const errorMessage = err.isAxiosError ? 'network' : 'unknown';
+          return toast.error(t(`errors.${errorMessage}`));
+        };
+        const trow = err.response?.status === 409 ? setUsedAlreadyExists(true) : trowAxiosErr(err);
+        trow();
       }
     },
   });

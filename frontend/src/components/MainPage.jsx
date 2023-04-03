@@ -26,14 +26,16 @@ const MainPage = () => {
         dispatch(messagesActions.setInitialMessages(data));
       })
       .catch((err) => {
-        if (err.response?.status === 401) {
+        const trowAxiosError = () => {
+          const errorMessage = err.isAxiosError ? 'network' : 'unknown';
+          return toast.error(t(`errors.${errorMessage}`));
+        };
+        const returnToLoginPage = () => {
           logOut();
           navigate(routes.loginPadePath(), { replace: true });
-        } else if (err.isAxiosError) {
-          toast.error(t('errors.network'));
-        } else {
-          toast.error(t('errors.unknown'));
-        }
+        };
+        const trowErr = err.response?.status === 401 ? returnToLoginPage() : trowAxiosError(err);
+        trowErr();
       });
   });
 
