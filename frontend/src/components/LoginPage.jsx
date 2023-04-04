@@ -31,7 +31,7 @@ const LoginPage = () => {
       try {
         const { data } = await axios.post(routes.loginPath(), values);
         logIn(data);
-        navigate(routes.chatPadePath(), { replace: true });
+        navigate(routes.chatPagePath(), { replace: true });
       } catch (err) {
         const trowAxiosError = () => {
           const errorMessage = Error.isAxiosError ? 'network' : 'unknown';
@@ -96,7 +96,7 @@ const LoginPage = () => {
             <div className="card-footer p-4">
               <div className="text-center">
                 <span>{t('login.newToChat')}</span>
-                <Link to={routes.signupPadePath()}>{t('login.signup')}</Link>
+                <Link to={routes.signupPagePath()}>{t('login.signup')}</Link>
               </div>
             </div>
           </div>

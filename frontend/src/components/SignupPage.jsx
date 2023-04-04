@@ -43,7 +43,7 @@ const SignupPage = () => {
       try {
         const { data } = await axios.post(routes.signupPath(), { username, password });
         logIn(data);
-        navigate(routes.chatPadePath(), { replace: true });
+        navigate(routes.chatPagePath(), { replace: true });
       } catch (err) {
         const trowAxiosErr = () => {
           const errorMessage = err.isAxiosError ? 'network' : 'unknown';

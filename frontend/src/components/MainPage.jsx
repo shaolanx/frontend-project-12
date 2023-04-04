@@ -32,7 +32,7 @@ const MainPage = () => {
         };
         const returnToLoginPage = () => {
           logOut();
-          navigate(routes.loginPadePath(), { replace: true });
+          navigate(routes.loginPagePath(), { replace: true });
         };
         const trowErr = err.response?.status === 401 ? returnToLoginPage() : trowAxiosError(err);
         trowErr();

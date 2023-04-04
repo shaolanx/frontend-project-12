@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
 
 const RequestAuth = ({ children }) => {
   const { user } = useAuth();
-  const Component = user ? children : <Navigate to={routes.loginPadePath()} />;
+  const Component = user ? children : <Navigate to={routes.loginPagePath()} />;
   return Component;
 };
 
@@ -55,8 +55,8 @@ const App = () => (
           <Layout />
           <Routes>
             <Route index element={(<RequestAuth><MainPage /></RequestAuth>)} />
-            <Route path={routes.signupPadePath()} element={<SignupPage />} />
-            <Route path={routes.loginPadePath()} element={<LoginPage />} />
+            <Route path={routes.signupPagePath()} element={<SignupPage />} />
+            <Route path={routes.loginPagePath()} element={<LoginPage />} />
             <Route path={routes.errorPagePath()} element={<ErrorPage />} />
           </Routes>
         </div>

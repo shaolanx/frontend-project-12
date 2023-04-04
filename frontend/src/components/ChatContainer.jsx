@@ -8,7 +8,7 @@ import * as yup from 'yup';
 import { Form } from 'react-bootstrap';
 import { useApi, useAuth } from '../hooks/index.jsx';
 
-const Messages = ({ author, message }) => (
+const Message = ({ author, message }) => (
   <div className="text-break mb-2">
     <b>{author}</b>
     {`: ${message}`}
@@ -61,7 +61,7 @@ const ChatContainer = () => {
           {filteredMaeesnge.map(({
             text, username, channelId, id,
           }) => (
-            <Messages
+            <Message
               key={id}
               message={text}
               author={username}

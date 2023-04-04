@@ -11,7 +11,7 @@ const ErrorPage = () => {
       <h1 className="h4 text-muted">{t('errors.pageNotFound')}</h1>
       <p className="text-muted">
         {t('errors.go')}
-        <Link to={routes.chatPadePath()}>{` ${t('errors.homePage')}`}</Link>
+        <Link to={routes.chatPagePath()}>{` ${t('errors.homePage')}`}</Link>
       </p>
     </div>
   );
