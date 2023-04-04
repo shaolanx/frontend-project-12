@@ -24,11 +24,14 @@ const ChatContainer = () => {
   const { messages } = useSelector((store) => store.messagesReducer);
   const { currentChannelId, channels } = useSelector((state) => state.channelsReducer);
   const currentChanel = channels.find(({ id }) => currentChannelId === id);
-  const filteredMaeesnge = messages.filter(({ channelId }) => channelId === currentChannelId);
+  const filteredMessage = messages.filter(({ channelId }) => channelId === currentChannelId);
   const nameChannel = currentChanel ? `# ${filter.clean(currentChanel.name)}` : '# general';
 
   const input = useRef(null);
+  const messageEndRef = useRef(null);
   useEffect(() => input.current.focus(), []);
+  useEffect(() => input.current.focus(), [currentChannelId]);
+  useEffect(() => { messageEndRef.current?.scrollIntoView({ block: 'end', behavior: 'smooth' }); }, [messages, currentChannelId]);
 
   const formik = useFormik({
     initialValues: {
@@ -41,6 +44,7 @@ const ChatContainer = () => {
       try {
         await addMessage(filter.clean(body), currentUser, currentChannelId);
         formik.values.body = '';
+        input.current.focus();
       } catch {
         const err = Error.isAxiosError ? 'network' : 'unknown';
         toast.error(t(`errors.${err}`));
@@ -55,10 +59,10 @@ const ChatContainer = () => {
           <p className="m-0">
             <b>{nameChannel}</b>
           </p>
-          <span className="text-muted">{`${filteredMaeesnge.length} ${t('chat.messageCount', { count: filteredMaeesnge.length })}`}</span>
+          <span className="text-muted">{`${filteredMessage.length} ${t('chat.messageCount', { count: filteredMessage.length })}`}</span>
         </div>
         <div id="messages-box" className="chat-messages overflow-auto px-5">
-          {filteredMaeesnge.map(({
+          {filteredMessage.map(({
             text, username, channelId, id,
           }) => (
             <Message
@@ -68,6 +72,7 @@ const ChatContainer = () => {
               channelId={channelId}
             />
           ))}
+          <div ref={messageEndRef} />
         </div>
         <div className="mt-auto px-5 py-3">
           <Form noValidate="" className="py-1 border rounded-2" onSubmit={formik.handleSubmit}>
