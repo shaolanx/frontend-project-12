@@ -41,6 +41,11 @@ const MainPage = () => {
 
   return (
     <div className="container h-100 my-4 overflow-hidden rounded shadow">
+      <div className="d-flex position-absolute justify-content-center">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Загрузка...</span>
+        </div>
+      </div>
       <div className="row h-100 bg-white flex-md-row">
         <ChannelsContainer />
         <ChatContainer />
